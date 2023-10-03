@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { BSTNode } from "../BST/BSTNode";
-import { inserBSTNode } from "../BST/insertBSTNode";
+import { insertBSTNode } from "../BST/insertBSTNode";
 import { toTree } from "../utils/toTree";
 import { checkBSTBalance } from "../utils/checkBalance";
 import { deleteBSTNode } from "../BST/deleteBSTNode";
@@ -26,7 +26,7 @@ const nextValue = ref(0);
 const bstNode = ref<BSTNode>(new BSTNode(0));
 const tree = ref(toTree(bstNode.value));
 const insertNode = () => {
-  inserBSTNode(bstNode.value, nextValue.value, undefined);
+  insertBSTNode(bstNode.value, nextValue.value, undefined);
   updateTree();
   checkBSTBalance(bstNode.value);
 };

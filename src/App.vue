@@ -1,13 +1,14 @@
 <template>
   <main>
     <bst-section />
-    <section></section>
+    <avl-section />
     <section></section>
   </main>
 </template> 
 
 <script setup lang="ts">
 import bstSection from './components/bst-section.vue';
+import avlSection from './components/avl-section.vue';
 </script> 
 
 <style>
@@ -38,13 +39,19 @@ pre {
   width: 100vw;
   margin: 0 auto;
 }
+
 pre div {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: red;
 }
-
+pre div:nth-child(odd) {
+  background-color: whitesmoke;
+}
+pre div:nth-child(even) {
+  background-color: lightgray
+}
 pre div span {
   flex: 1;
   text-align: center;
