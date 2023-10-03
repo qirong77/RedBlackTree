@@ -1,6 +1,7 @@
 import { isLeftNode } from "../utils/isLeftNode";
 import { AVLNode } from "./AVLNode";
 import { insertBSTNode } from "../BST/insertBSTNode";
+import { getLeftToRightWeight } from "../utils/getLeftToRightHeight";
 export const insertAVLNode = (node: AVLNode, target: number) => {
   const newNode = insertBSTNode(node, target, undefined);
   if (!newNode) throw new Error("插入失败");
@@ -61,13 +62,7 @@ export const balanceInsertion = (node: AVLNode): AVLNode => {
   return node;
 };
 
-function getLeftToRightWeight(node: AVLNode) {
-  return getNodeHeight(node?.left) - getNodeHeight(node?.right);
-  function getNodeHeight(node: AVLNode | undefined): number {
-    if (!node) return 1;
-    return 1 + Math.max(getNodeHeight(node.left), getNodeHeight(node.right));
-  }
-}
+
 
 /*  x,y,a三个字母表示不平衡的ll型,z字母表示新插入的节点
      x               y

@@ -6,7 +6,7 @@ export const checkBSTBalance = (node: BSTNode | undefined,depth=0) => {
     throw new Error('当前节点没有父节点')
   }
   if (node.left && node.right) {
-    if (node.left.value > node.value || node.value > node.right.value || node.left.value > node.right.value) {
+    if (node.left.value >= node.value || node.value >= node.right.value || node.left.value >= node.right.value) {
       throw new Error("不平衡");
     }
   }
