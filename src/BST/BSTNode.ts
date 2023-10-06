@@ -23,4 +23,7 @@ export class BSTNode {
     this.parent = undefined;
     return this;
   }
+  isLeaf() {
+    return !this.left && !this.right
+  }
 }

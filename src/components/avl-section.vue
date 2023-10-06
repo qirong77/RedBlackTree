@@ -4,7 +4,7 @@
             <button @click="insertNode(0)">插入-insert</button>
             <button @click="deleteNode">删除-delete</button>
             <button @click="logTree">打印-logTree</button>
-            <button @click="loadTest">load many test</button>
+            <button @click="loadTest">load many test(open console to get the detail)</button>
             <input v-model.number="nextValue" placeholder="节点值" />
         </header>
         <pre>

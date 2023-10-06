@@ -1,10 +1,11 @@
+import { isNumber } from "lodash-es";
 import { findRightSubTreeMin } from "../utils/findRightSubTreeMin";
 import { findTargetNode } from "../utils/findTargetNode";
 import { isLeftNode } from "../utils/isLeftNode";
 import { BSTNode } from "./BSTNode";
 
-export const deleteBSTNode = (node: BSTNode, target: number) => {
-  const targetNode = findTargetNode(node, target);
+export const deleteBSTNode = (node: BSTNode, target: number | BSTNode) => {
+  const targetNode = isNumber(target) ? findTargetNode(node, target) : target;
   if (!targetNode) throw new Error("找不到需要删除的节点");
   if (
     (targetNode.left && !targetNode.right) ||
@@ -30,7 +31,8 @@ export const deleteBSTNode = (node: BSTNode, target: number) => {
   if (targetNode.left && targetNode.right) {
     const nextNode = findRightSubTreeMin(targetNode);
     targetNode.value = nextNode.value;
-    nextNode.free();
+    if (nextNode.isLeaf()) nextNode.free();
+    else deleteBSTNode(nextNode, nextNode);
     return;
   }
 };

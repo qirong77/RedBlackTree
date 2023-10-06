@@ -23,13 +23,13 @@ export const balanceInsertion = (node: AVLNode): AVLNode => {
       break;
     }
   }
-  // 左旋,形状为:/
+  // 右旋,形状为:/
   if (leftToRightWeight > 0 && newNode.value < node.left!.value) {
-    return leftRotate(node);
-  }
-  // 右旋,形状为:\
-  if (leftToRightWeight < 0 && newNode.value > node.right!.value) {
     return rightRotate(node);
+  }
+  // 左旋,形状为:\
+  if (leftToRightWeight < 0 && newNode.value > node.right!.value) {
+    return leftRotate(node);
   }
   // lr
   if (leftToRightWeight > 0 && newNode.value > node.left!.value) {
@@ -43,7 +43,7 @@ export const balanceInsertion = (node: AVLNode): AVLNode => {
     z.left = y;
     z.parent = x;
     x.left = z;
-    return leftRotate(x);
+    return rightRotate(x);
   }
   // rl
   if (leftToRightWeight < 0 && newNode.value < node.right!.value) {
@@ -57,7 +57,7 @@ export const balanceInsertion = (node: AVLNode): AVLNode => {
     z.right = y;
     z.parent = x;
     x.right = z;
-    return rightRotate(x);
+    return leftRotate(x);
   }
   return node;
 };
@@ -69,7 +69,7 @@ export const balanceInsertion = (node: AVLNode): AVLNode => {
   y     c   ->    z     x
 z   b                 b   c
 */
-function leftRotate(x: AVLNode) {
+function rightRotate(x: AVLNode) {
   const y = x.left!;
   const b = y.right?.break();
   if (x.parent) {
@@ -87,7 +87,7 @@ function leftRotate(x: AVLNode) {
 a     y      =>      x      z
     b   z          a   b
 */
-function rightRotate(x: AVLNode) {
+function leftRotate(x: AVLNode) {
   const y = x.right!;
   const b = y.left?.break();
   if (x.parent) {
