@@ -1,15 +1,16 @@
 import { BSTNode } from "../BST/BSTNode";
 import { cloneDeep } from "lodash-es";
-export const toTree = (node: BSTNode | undefined) => {
+import { RBTNode } from "../RBT/RBTNode";
+export const toTree = (node: BSTNode | RBTNode | undefined) => {
   return toFullBinaryTree(cloneDeep(node));
 };
 
 function toFullBinaryTree(
-  node: BSTNode | undefined,
+  node: BSTNode | RBTNode | undefined,
   depth = 0,
-  results = [] as (BSTNode | null)[][]
+  results = [] as (BSTNode | RBTNode | null)[][]
 ) {
-  if(depth > 8) return
+  if (depth > 6) return;
   if (node) {
     if (results[depth]) results[depth].push(node);
     else results[depth] = [node];
@@ -17,7 +18,7 @@ function toFullBinaryTree(
     if (results[depth]) results[depth].push(null);
     else results[depth] = [null];
   }
-  toFullBinaryTree(node?.left, depth + 1, results);
-  toFullBinaryTree(node?.right, depth + 1, results);
+  toFullBinaryTree(node?.left as any, depth + 1, results);
+  toFullBinaryTree(node?.right as any, depth + 1, results);
   return results;
 }
