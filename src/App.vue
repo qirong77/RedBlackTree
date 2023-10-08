@@ -46,6 +46,7 @@ pre div {
   justify-content: center;
   align-items: center;
   background-color: red;
+  margin: 10px 0;
 }
 
 pre div:nth-child(odd) {
